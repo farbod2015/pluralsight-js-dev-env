@@ -10,7 +10,8 @@
     "security-check": "nsp check",
     "start": " npm-run-all --parallel security-check open:src lint:watch",
     "localtunnel": "lt --port 4000",
-    "share": " npm-run-all --parallel open:src localtunnel"
+    "share": " npm-run-all --parallel open:src localtunnel",
+    "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\""
   },
   "author": "Cory House",
   "license": "MIT",
