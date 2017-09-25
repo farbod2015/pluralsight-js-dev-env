@@ -249,12 +249,16 @@ Continuous Integration:
 
     Note: you can run multiple CI servers. For example, set up Travis and Appveyor to make sure that our build process runs on Mac, Linux, and Windows.
 	
-	5- to set up travis:
+	5- How to set up travis:
     - log into travis-ci.org using your github account and activate the repository
     - create .travis.yml under root and add: 
         language: node_js
         node_js:
           - "6"
+	
+	6- How to set up Appveyor:
+    - log into appveyor.com using your github account and add the repository
+    - create appveyor.yml under root and add the desired settings 
 	
 
 
