@@ -15,6 +15,8 @@ Helpful git commands:
 		git commit -m "added new feature"
 	3- push your work to Github:
 		git push
+  4- see all the changes:
+    git status
 
 Editors:
 	1- Atom, WebStorm, Brackets, VSCode
