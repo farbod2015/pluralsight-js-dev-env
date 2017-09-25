@@ -260,6 +260,17 @@ Continuous Integration:
     - log into appveyor.com using your github account and add the repository
     - create appveyor.yml under root and add the desired settings 
 	
+HTTP Calls:
+  1- HTTP call approaches:
+    - Node: http, request (recommended)
+    - Browser: XMLHttpRequest, JQuery, Fetch (recommended)
+    - Node & Browser: isomorphic-fetch, xhr, SuperAgent, Axios
+
+
+
+
+
+
 
 
 
