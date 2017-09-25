@@ -1,5 +1,3 @@
-# pluralsight-js-dev-env
-
 What is the purpose of the starter kit? How create them?
 
 Steps:
@@ -132,29 +130,129 @@ Bundling:
 			- there are many different options depending on the quality and speed that you are looking (we used "inline-source-map").
 			- use "debugger;" as breakpoint in the javascript code. the inspector in the developer tool of the browser will show the original js code instead the bundled
 	
+Linting:
+	1- why do you need a linter? I see two core reasons:
+		- First: it programmatically enforces consistency to make it easy to read (e.g. enforcing the position of curly braces)
+		- Second: it helps avoid mistakes (e.g. adding an extra parenthesis or overwriting a function)
+		Note: it does rapid feedback when hit save
+	2- Linters:
+		- JSLint
+		- JSHint
+		- ESLint (most popular and powerful)
+	3- Core decisions for using a linter:
+		- config format? choose one of these file names for configuration:
+			- .enlintrc.js
+			- .enlintrc.yaml
+			- .enlintrc.yml
+			- .enlintrc.json
+			- .enlintrc
+			- package.json
+		- which built-in rules? no rules are enabled by default (see ESLint docs for a full list of rules)
+		- warnings or errors? if you set the rule as a "warning" it doesn't break the build while "error" does
+		- which plugins? e.g. use eslint-plugin-react for React specific linting rules for ESLint
+		- use preset instead? ways to handle your ESLint rules:
+			- start from scratch
+			- use ESLint preset (recommended)
+			- other presets: XO, airbnb, standardJS
+	4- helpful link: github.com/dustinspecker/awesome-eslint
+	5- use npm package called eslint-watch that adds file watching capability to ESLint
+	6- use babel-eslint instead if you wanted to use other experimental JavaScript features 
+	7- other than the required packages ("eslint", "eslint-plugin-import" and "eslint-watch"), these lines added to the scripts section of the package.json:
+		"lint": "esw webpack.config.* src buildScripts --color",
+		"lint:watch": "npm run lint -- --watch",
+		"start": " npm-run-all --parallel security-check open:src lint:watch",
+
+Testing and Continuous Integration:
+	1- JavaScript Testin Styles:
+		- Unit Testing: focuses on testing a single function or module in an automated fashion (covered in this course)
+		- Integration Testing: focuses on testing the interactions between multiple modules
+		- Automated UI Testing: tests the appliation by automating clicks and key strokes within the actual UI
+		- etc.
+	2- Unit Testing Decisions:
+		- Framework
+			- Mocha: the most popular (we use this)
+			- Jasmine
+			- tape
+			- QUnit
+			- AVA
+			- Jest
+		- Assertion Library: is a way to declare what you expect:
+			- Example: expect(2+2).to.equal(4)
+			-  Most frameworks include their own assertions built in, but since Mocha doesn't, we need to choose one (we'll use Chai for assertions)
+		- Helper Libraries
+			- JSDOM: it is useful when you want to write tests that involve HTML and interactions in the browser using Node (we use this)
+			- Cheerio: it is as jQuery for the server
+		- Where to run tests?
+			- Browser: run the test on real browser (Karma, Testem)
+			- Headless Browser: run the test on an invisible browser (PhantomJS)
+			- In-memory DOM: simulating a DOM in memory (JSDOM)
+		- Where to place tests?
+			- Centralized: centralize all your tests within a folder called tests or something similar
+			- Alongside: place tests alongside the file under test (we prefer)
+				- easy import
+				- clear visibility
+				- convenient to open
+				- no recreating folder structure
+		- When to run tests?
+			- unit test should run any time we hit save
+			- integration test: oftem run on demand, or in QA
+		
+		- Decision summary for this course:
+			- Framework: Mocha
+			- Assertion Library: Chai
+			- Helper Libraries: JSDOM
+			- Where to run tests? Node
+			- Where to place tests? Alongside
+			- When to run tests? Upon save
 	
+  Note: id test setup in testSetup.js and wrote two test cases in index.test.js
+
+	Note: if there is an asynchronous call (e.g. "function" in following example) use done() so that mocha knows that it is safe to evaluate what you expect is true or false:
+      describe('index.html', () => {
+      it('should say hello', (done) => {
+        const index = fs.readFileSync('./src/index.html', "utf-8");
+        jsdom.env(index, function(err, window) {
+          const h1 = window.document.getElementsByTagName('h1')[0];
+          expect(h1.innerHTML).to.equal("Hello World!");
+          done();
+          window.close();
+        });
+      })
+    })
+
+	- To run the test automatically every time that we hit save add the following to scipts section of package.json:
+    "test:watch": "npm run test -- --watch"
 	
+Continuous Integration:
+  1- with continuous integration server we can find out right away when someone else has broken the build or when you made a bad commit that has broken the build on someone else's machine
+	2- CI server catches (quickly) a number of potential mistakes:
+    - Forgot to commit new file
+    - Forgot to update package.json
+    - Commit doesn't run cross-platform
+    - Node version conflicts
+    - Bad merge
+    - Didn't run tests
+  3- What does a CI server do?
+    - Run automated build
+    - Run your tests
+    - Check code coverage
+    - Automate deployment
+	4- Common CIs:
+    - Travis (Linux)
+    - Appveyor (Windows)
+    - Jenkins
+    - CircleCI
+    - Semaphore
+    -SnapCI
+
+    Note: you can run multiple CI servers. For example, set up Travis and Appveyor to make sure that our build process runs on Mac, Linux, and Windows.
 	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
-	
+	5- to set up travis:
+    - log into travis-ci.org using your github account and activate the repository
+    - create .travis.yml under root and add: 
+        language: node_js
+        node_js:
+          - "6"
 	
 
 
