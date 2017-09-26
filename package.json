@@ -8,12 +8,14 @@
     "lint": "esw webpack.config.* src buildScripts --color",
     "lint:watch": "npm run lint -- --watch",
     "security-check": "nsp check",
-    "start": " npm-run-all --parallel security-check open:src lint:watch test:watch",
+    "start": " npm-run-all --parallel security-check open:src lint:watch test:watch start-mockapi",
     "localtunnel": "lt --port 4000",
     "share": " npm-run-all --parallel open:src localtunnel",
     "test": "mocha --reporter progress buildScripts/testSetup.js \"src/**/*.test.js\"",
     "test:watch": "npm run test -- --watch",
-    "generate-mock-data": "babel-node buildScripts/generateMockData"
+    "generate-mock-data": "babel-node buildScripts/generateMockData",
+    "prestart-mockapi": "npm run generate-mock-data",
+    "start-mockapi": "json-server --watch src/api/db.json --port 4001"
   },
   "author": "Cory House",
   "license": "MIT",

@@ -300,6 +300,18 @@ HTTP Calls:
 
   Note: In this course we used JSON Schema faker to dynamically generate a mock data set and point JSON server to that.
 
+Project Structure
+  1- Create a demo app with the starting kit:
+    - This gives everyone clarity on recommended approaches for directory structure, file naming, framework usage, testing, API calls, deployment, and more.
+    - It provides an interactive example of what it's like to work on your team. 
+  2- Tips:
+    - Tip 1: JS belongs in a .js file (no inline js code in HTML files)
+    - Tip 2: organize by feature instead of file type
+    - Tip 3: extract logic to POJOs (minimizes the impacts of switching to a different framework):
+      - Plain Old JavaScript Objects
+      - Pure logic
+      - No framework-specific code
+
 
 
 
