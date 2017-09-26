@@ -312,6 +312,29 @@ Project Structure
       - Pure logic
       - No framework-specific code
 
+Production Build:
+  1- create an automated production build to benefit from:
+    - minification: to speed loads:
+      - Shortens variable and function names
+      - Removes comments
+      - Removes whitespace and new lines
+      - Dead code elimination / Tree-shaking
+      - Debug via sourcemap
+    - Sourcemaps: generated to support debugging in production
+    - Dynamic HTML: for production specific concerns
+    - Cache busting: to ensure that users receive the latest version of our code upon deployment
+    - Bundle splitting: so that users don't have to download the entire application when just part of it changes
+    - Error logging: so that we know when bugs sneak their way into production
+
+
+
+
+
+
+
+
+
+
 
 
 
