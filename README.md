@@ -18,6 +18,12 @@ Helpful git commands:
   4- see all the changes:
     git status
 
+Other Commands:
+  1- to run a code:
+    node filename
+  2- to transpile and run:
+    babel-node filename
+
 Editors:
 	1- Atom, WebStorm, Brackets, VSCode
 	2- Create .editorconfig in the root consistence spacing, character set, etc. regardless of the editor
@@ -265,13 +271,34 @@ HTTP Calls:
     - Node: http, request (recommended)
     - Browser: XMLHttpRequest, JQuery, Fetch (recommended)
     - Node & Browser: isomorphic-fetch, xhr, SuperAgent, Axios
+  2- Key: Centralize API calls:
+    - Handle API calls in a single spot
+    - Why?
+      - You can configure all calls in a single place
+      - Handle preloader login: show preloader until all asynchronous calls are complete
+      - Handle errors in one place
+      - Sinlge seam for mocking API
+  3- Why Mock HTTP?
+    - Unit Testing
+    - Instant response
+    - Keep working when services are down
+    - Rapid prototyping
+    - Avoid inter-team bottlenecks
+    - Work offline
+  4- How to Mock HTTP?
+    - Nock: a handy way for unit test (specify the URL to mock and what it should return)
+    - Static JSON 
+    - Create development webserver
+      - api-mock
+      - JSON server (creates realistic API using a static JSON)
+      - JSON Schema Faker (creates different fake JSON data every time app starts). Libraries:
+        - faker.js
+        - chance.js
+        - regexp.js
+      - Browsersync
+      - Express, etc.
 
-
-
-
-
-
-
+  Note: In this course we used JSON Schema faker to dynamically generate a mock data set and point JSON server to that.
 
 
 
