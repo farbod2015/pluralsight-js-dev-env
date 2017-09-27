@@ -324,7 +324,41 @@ Production Build:
     - Dynamic HTML: for production specific concerns
     - Cache busting: to ensure that users receive the latest version of our code upon deployment
     - Bundle splitting: so that users don't have to download the entire application when just part of it changes
-    - Error logging: so that we know when bugs sneak their way into production
+    - Error logging: so that we know when bugs sneak their way into production. 
+      - Error Logging Services:
+        - TrackJS (we used this)
+        - Sentry
+        - New Relic
+        - Raygun
+      - Things to consider when choosing an error logging service:
+        - Error Metadata
+          - Browser
+          - Stack trace
+          - Previous actions
+          - Custom API for enhanced tracking
+        - Notifications & integrations
+        - Analytics and filtering
+        - Pricing
+
+Production Deployment:
+  1- Cloud Hosting:
+    - amazon web services
+    - Microsoft Azure
+    - HEROKU
+    - Firebase
+    - Google Cloud Platform
+    - Netlify (only static files)
+    - GitHub Pages (only static files)
+    - Surge (only static files)
+2- We used HEROKU for API and Surge for UI
+
+
+
+
+
+
+
+
 
 
 
